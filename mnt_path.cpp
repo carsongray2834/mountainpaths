@@ -52,6 +52,15 @@ void findPath(const ElevationData&  elev_data, int startRow, ColorGrid& cg) {
 	// by minimizing the difference of elevation.
 	//
 	// Write path to the colorgrid
+	int x = 0;
+	int y = startRow;
+
+	while (x < cg.getWidth()) {
+		cg.get(y+1,x+1);
+
+		cg.set(y, x, Color(255, 0, 0));
+		x++;
+	}
 }
 
 int main(int argc, char **argv) {
@@ -60,7 +69,7 @@ int main(int argc, char **argv) {
 
 
 	// initialize Bridges
-	Bridges bridges(123, "BRIDGES_USER_ID", "BRIDGES_API_KEY");
+	Bridges bridges(123, "ID", "api key");
 
 	// defaults for row number and data file
 	int startRow = 50;
@@ -78,8 +87,8 @@ int main(int argc, char **argv) {
 	ColorGrid cg = getImage(elev_data);
 
 	// find path by applying a greedy algorithm
-	//startRow = elev_data.getRows()/2;
-	//findPath (elev_data, startRow, cg);
+	startRow = elev_data.getRows()/2;
+	findPath (elev_data, startRow, cg);
 
 	// visualize
 	bridges.setDataStructure(cg);
