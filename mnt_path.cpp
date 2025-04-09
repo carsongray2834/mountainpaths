@@ -1,6 +1,7 @@
 #include "Bridges.h"
 #include "ColorGrid.h"
 
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -76,7 +77,7 @@ int main(int argc, char **argv) {
 
 
 	// initialize Bridges
-	Bridges bridges(123, "ID", "API KEY");
+	Bridges bridges(123, "carsongray2834", "721580111768");
 
 	// defaults for row number and data file
 	int startRow = 50;
@@ -93,7 +94,10 @@ int main(int argc, char **argv) {
 
 	// color grid for visualization
 	ColorGrid cg = getImage(elev_data);
-	startRow = cg.getHeight() / 2;
+	//startRow = cg.getHeight() / 2;
+	cout << "Enter Start Row: ";
+	cin >> startRow;
+	if ((startRow < 0) || (startRow > cg.getHeight() - 1)) exit(EXIT_FAILURE);
 	// find path by applying a greedy algorithm
 	findPath (elev_data, startRow, cg);
 
