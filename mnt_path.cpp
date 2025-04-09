@@ -76,11 +76,11 @@ int main(int argc, char **argv) {
 
 
 	// initialize Bridges
-	Bridges bridges(123, "carsongray2834", "1195473891463");
+	Bridges bridges(123, "ID", "API KEY");
 
 	// defaults for row number and data file
 	int startRow = 50;
-	cin >> startRow;
+	//cin >> startRow;
 
 	// set title
 	bridges.setTitle("Greedy Algorithm Example");
@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
 
 	// color grid for visualization
 	ColorGrid cg = getImage(elev_data);
-
+	startRow = cg.getHeight() / 2;
 	// find path by applying a greedy algorithm
 	findPath (elev_data, startRow, cg);
 
